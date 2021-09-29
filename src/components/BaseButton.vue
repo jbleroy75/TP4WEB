@@ -6,9 +6,9 @@
 
 <script>
 const colorPalette = {
-  primary: {bg: '#42b983', hoverBg: '#4cce93', disabledBg: '#9ed3bf', focusBorder: '#47d696'},
-  warn: {bg: '#ff5722', hoverBg: '#ff7043', disabledBg: '#ccaca2', focusBorder: '#ff8a65'},
-  danger: {bg: '#e53935', hoverBg: '#ef5350', disabledBg: '#cca3a3', focusBorder: '#e57373'},
+  primary: {bg: '#42b983', hoverBg: '#4cce93', disabledBg: '#71c9a8', focusBorder: '#47d696'},
+  warn: {bg: '#ff5722', hoverBg: '#ff7043', disabledBg: '#ce8069', focusBorder: '#ff8a65'},
+  danger: {bg: '#e53935', hoverBg: '#ef5350', disabledBg: '#d96c6c', focusBorder: '#e57373'},
 }
 
 export default {
@@ -26,7 +26,7 @@ export default {
         '--background': color.bg,
         '--background-hover': color.hoverBg,
         '--border-hover': "solid 1px " + color.focusBorder,
-        '--background-hover-disabled': color.hoverBg
+        '--background-disabled': color.disabledBg
       }
     }
   }
@@ -34,6 +34,8 @@ export default {
 </script>
 
 <style scoped>
+
+
 button {
   color: white;
   border-radius: 5px;
@@ -42,6 +44,10 @@ button {
   font-weight: bold;
   margin: 5px;
   background: var(--background);
+  --background: #42b983;
+  --background-hover: #4cce93;
+  --border-hover: solid 1px #47d696;
+  --background-disabled: #71c9a8;
 }
 
 button:hover {
@@ -50,7 +56,7 @@ button:hover {
 }
 
 button:disabled {
-  background: var(--background-hover-disabled);
+  background: var(--background-disabled);
   cursor: not-allowed;
 }
 </style>
