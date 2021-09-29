@@ -1,10 +1,9 @@
 <template>
   <base-button
-      :disabled="isPending"
       :color="color"
       @click.stop.prevent="handleClick"
   >
-    <span v-if="isPending">Loading.. </span>
+    <span v-if="isPending">Loading.. {{currentTime}}: </span>
     <slot/>
   </base-button>
 </template>
@@ -26,16 +25,26 @@ export default {
 
   data() {
     return {
-      isPending: false
+      isPending: false,
+      currentTime: 0
     }
   },
 
   methods: {
     handleClick() {
-      if (this.isPending)
+      if (this.isPending === true) {
+        this.currentTime++;
         return;
+      }
+
       this.isPending = true
-      setTimeout(() => this.isPending = false, 2000);
+      this.currentTime = 2
+      var timer = setInterval(() => {
+        if (--this.currentTime === 0) {
+          this.isPending = false
+          clearInterval(timer);
+        }
+      }, 1000);
     }
   }
 }
