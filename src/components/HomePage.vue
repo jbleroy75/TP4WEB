@@ -1,6 +1,8 @@
 <template>
   <h1>HomePage</h1>
-  <base-button>My BaseButton</base-button>
+  <base-button color="primary">My BaseButton</base-button>
+  <base-button color="warn">My BaseButton</base-button>
+  <base-button color="danger">My BaseButton</base-button>
   <base-button disabled>My BaseButton disabled</base-button>
 </template>
 

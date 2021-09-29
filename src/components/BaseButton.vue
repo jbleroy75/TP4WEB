@@ -1,35 +1,54 @@
 <template>
-  <button>
+  <button :style="getStyle">
     <slot></slot>
   </button>
 </template>
 
 <script>
+const colorPalette = {
+  primary: {bg: '#42b983', hoverBg: '#4cce93', focusBorder: '#47d696'},
+  warn: {bg: '#ff5722', hoverBg: '#ff7043', focusBorder: '#ff8a65'},
+  danger: {bg: '#e53935', hoverBg: '#ef5350', focusBorder: '#e57373'},
+}
+
 export default {
-  name: "BaseButton"
+  name: "BaseButton",
+  props: {
+    color: {
+      type: String,
+      default: 'primary'
+    }
+  },
+  computed: {
+    getStyle: function (){
+      let color = colorPalette[this.color];
+      return {
+        '--background': color.bg,
+        '--background-hover': color.hoverBg,
+        '--border-hover': "solid 1px " + color.focusBorder
+      }
+    }
+  }
 }
 </script>
 
 <style scoped>
 button {
   color: white;
-  background: #30cb92;
   border-radius: 5px;
   padding: 10px;
-  border: none;
+  border: solid 1px #ececec;
   font-weight: bold;
   margin: 5px;
+  background: var(--background);
 }
 
-button:hover {
-  background: #28b682;
+button:hover{
+  background: var(--background-hover);
+  border: var(--border-hover);
 }
 
 button:disabled {
-  background: #6dcca5;
   cursor: not-allowed;
-}
-button:disabled:hover {
-  background: #75dcb2;
 }
 </style>
